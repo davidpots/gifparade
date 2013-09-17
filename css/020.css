@@ -20,8 +20,10 @@
 
     section         { padding: 14px; }
     h1              { font-weight: 200; font-size: 90px; line-height: 118px; }
-    p               { margin: 0 0 18px 0; }
+    hr              { margin: 0 0 10px 0; }
+    p               { margin: 0 0 10px 0; }
     a               { text-decoration: none; color: gold; }
+    form            { margin: 0 0 18px 0; }
 
 /* -- */
 
