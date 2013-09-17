@@ -52,10 +52,10 @@
 // Turn Params into vars
 
       var defaultTitle = "Here comes the gif parade!";
-      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=EIyixC9NsLI";
-      var defaultGif1 = "http://media.giphy.com/media/4sLyMfds3Z5e0/giphy.gif";
-      var defaultGif2 = "http://media.giphy.com/media/w00mjqFLNiec/giphy.gif";
-      var defaultGif3 = "http://media.giphy.com/media/jmeLRR5J3ovJe/giphy.gif";
+      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=GugsCdLHm-Q";
+      var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
+      var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
+      var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
 
       // Setup Title
       if (urlVars.paradeTitle == undefined) {
