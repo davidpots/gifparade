@@ -19,7 +19,7 @@
 /* -- GENERAL -- */
 
     section         { padding: 14px; }
-    h1              { font-weight: 200; font-size: 90px; line-height: 118px; }
+    h1              { font-weight: 200; font-size: 60px; line-height: 75px; }
     hr              { margin: 0 0 10px 0; }
     p               { margin: 0 0 10px 0; }
     a               { text-decoration: none; color: gold; }
@@ -46,17 +46,23 @@
                       z-index: 1; }
     #chyron         { position: absolute;
                       text-align: center;
-                      bottom: 0px; left: 0px; right: 0px; 
-                      background-color: rgba(0,0,0,0.5);
+                      bottom: 50%; left: 0px; right: 0px; 
                       padding: 32px;
                       color: #fff;
                       z-index: 3; }
     #belowfold      { position: absolute;
-                      background: #09004c;
+                      background: #000;
                       color: #fff;
                       top: 100%; 
                       width: 100%;
                       padding: 40px; }
+    #title          { position: absolute; 
+                      z-index: 10;
+                      left: 20px;
+                      bottom: 14px;
+                    }
+    #title em       { font-style: italic; font-size: 32px; font-weight: 700; text-transform: uppercase; display: inline-block; background: yellow; color: black; padding: 16px 12px; }
+    #title strong   { font-style: italic; font-size: 32px; font-weight: 200; text-transform: uppercase; display: inline-block; background: black; color: white; padding: 16px 12px; }
 
 /* New GIF PARADE form */
 
