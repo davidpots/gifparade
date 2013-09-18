@@ -61,5 +61,6 @@
 /* New GIF PARADE form */
 
     #newParade-form ul    { }
-    #newParade-form ul li { list-style: none; }
+    #newParade-form ul li { list-style: none; margin: 6px 0; }
     #newParade-form ul li label { display: inline-block; width: 92px; }
+    #newParade-form ul li input { width: 300px; padding: 7px; font-size: 12px; background: #eee; border: none; border-radius: 3px; }
