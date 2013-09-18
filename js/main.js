@@ -1,14 +1,11 @@
-// YouTube URL Manipulation
+// Defaults
 
-      // Take a normal YouTube URL, get the special ID...
-      function getYouTubeCode(url) {
-        return url.split('?v=')[1];
-      }
-
-      // Insert the YouTube ID into the embed URL
-      function makeEmbeddable(code) {
-        return "//www.youtube.com/embed/"+code;
-      }
+      var defaultNumberGifs = 3;
+      var defaultTitle = "get on board!";
+      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=GugsCdLHm-Q";
+      var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
+      var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
+      var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
 
 // Read URL params
 
@@ -26,20 +23,6 @@
       var urlVars = getUrlVars();
 
       // v2
-      // via LoudGIF http://loudgif.com/
-      function getParam(name) {
-          return decodeURI(
-              (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-          );
-      }
-
-      // v3
-      // replaces each "+" with human-readable spaces (via http://stackoverflow.com/a/4458580 )
-      function presto(str) {
-        return decodeURIComponent((str+'').replace(/\+/g, '%20'));
-      }
-
-      // v4
       // written by me, quite newbish but works for prototype... need to understand the ins+outs better
       function tidyParams(str) {
         // str = str.replace('%2C',',');
@@ -48,22 +31,17 @@
         return str;
       }
 
+// YouTube URL Manipulation
 
-// Turn Params into vars
-
-      var defaultNumberGifs = 3;
-      var defaultTitle = "get on board!";
-      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=GugsCdLHm-Q";
-      var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
-      var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
-      var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
-
-      // Setup Title
-      if (urlVars.paradeTitle == undefined) {
-        urlVars.paradeTitle = defaultTitle;
+      // Take a normal YouTube URL, get the special ID...
+      function getYouTubeCode(url) {
+        return url.split('?v=')[1];
       }
-      var str = tidyParams(urlVars.paradeTitle);
-      $('#chyron h1').text(str);
+
+      // Insert the YouTube ID into the embed URL
+      function makeEmbeddable(code) {
+        return "//www.youtube.com/embed/"+code;
+      }
 
       // Setup YouTube video
       if (urlVars.paradeYoutubeUrl == undefined) {
@@ -74,6 +52,54 @@
       str = makeEmbeddable(str);
       str = "https:" + str + "?enablejsapi=1&controls=0&modestbranding=1&autoplay=1&start=0&origin="+location.hostname;
       $('#player').attr('src',str)
+
+// YouTube API high-five https://developers.google.com/youtube/iframe_api_reference
+
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: getYouTubeCode(urlVars.paradeYoutubeUrl),
+          playerVars: {
+              'autoplay': 1,
+              'controls': 0,
+              'modestbranding': 1,
+              'showinfo': 0,
+              'loop': 1
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        // This is what Garrett does... pauses the video, gets the GIF ready, which then starts the video (once GIF is loaded). http://loudgif.com/js/loud.js
+        // player.pauseVideo();
+        // loadGif();
+      }
+
+      function onPlayerStateChange(event) {
+        // Garrett does something here too, need to dig into it... http://loudgif.com/js/loud.js
+      }
+
+
+// Turn Params into vars
+
+      // Setup Title
+      if (urlVars.paradeTitle == undefined) {
+        urlVars.paradeTitle = defaultTitle;
+      }
+      var str = tidyParams(urlVars.paradeTitle);
+      $('#chyron h1').text(str);
 
       // Setup the Gifs
       if (urlVars.gif1 == undefined) {
@@ -165,3 +191,23 @@
         document.getElementById('gif'+c).value = urlVars["gif"+c];
       }
 
+// YouTube play/pause (for audio sensibility)
+
+      $('#toggle-video').click(function(){
+        if ($(this).data('playing') === true) {
+          player.pauseVideo();
+          $(this)
+            .data('playing', false)
+            .text('turn audio ON')
+            .removeClass('audio-on')
+            .addClass('audio-off');
+        } else {
+          player.playVideo();
+          $(this)
+            .data('playing', true)
+            .text('turn audio OFF')
+            .removeClass('audio-off')
+            .addClass('audio-on');
+        }
+        return false;
+      });

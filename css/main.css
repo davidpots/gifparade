@@ -45,11 +45,15 @@
                       width: 100%;
                       z-index: 1; }
     #chyron         { position: absolute;
-                      text-align: center;
                       bottom: 50%; left: 0px; right: 0px; 
-                      padding: 32px;
-                      color: #fff;
                       z-index: 3; }
+    #chyron h1      { text-align: center;
+                      padding: 32px;
+                      text-shadow: 3px 3px 0px fuchsia;
+                      text-transform: uppercase;
+                      font-style: italic;
+                      font-weight: 700;
+                      color: #fff; }
     #belowfold      { position: absolute;
                       background: #000;
                       color: #fff;
@@ -63,7 +67,28 @@
                     }
     #title em       { font-style: italic; font-size: 32px; font-weight: 700; text-transform: uppercase; display: inline-block; background: yellow; color: black; padding: 16px 12px; }
     #title strong   { font-style: italic; font-size: 32px; font-weight: 200; text-transform: uppercase; display: inline-block; background: black; color: white; padding: 16px 12px; }
-
+    #controls {
+      position: absolute;
+      z-index: 10;
+      bottom: 14px;
+      right: 20px;
+    }
+    #controls a {
+      display: inline-block;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 700;
+      padding: 16px 12px;
+    }
+    #controls a.audio-on {
+      background: rgba(0,255,255,0.48);
+      color: #000;
+    }
+    #controls a.audio-off {
+      background: rgba(255,0,255,0.48);
+      color: #fff;
+    }
 /* New GIF PARADE form */
 
     #newParade-form ul    { }
