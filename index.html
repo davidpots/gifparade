@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <title>GIF PARADE</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/020.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 
@@ -23,14 +23,28 @@
 
     <div id="belowfold">
       <form action="" method="get" id="newParade-form" name="newParade" class="">
-        title: <input type="text" id="" name="paradeTitle"><br />
-        youtube url: <input type="text" id="" name="paradeYoutubeUrl"><br />
-        gif #1: <input type="text" class="combine" id="" name="gif1"><br />
-        gif #2: <input type="text" class="combine" id="" name="gif2"><br />
-        gif #3: <input type="text" class="combine" id="" name="gif3"><br />
+        <ul>
+          <li>
+            <label>title: </label>
+            <input type="text" id="" name="paradeTitle">
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <label>youtube url: </label>
+            <input type="text" id="" name="paradeYoutubeUrl">
+          </li>
+        </ul>
+        <ul class="gif_fields">
+          <li id="gif_template" style="display:none;">
+            <input type="hidden" class="template" name="" value="">
+          </li>
+        </ul>
+        <input type="hidden" id="numberOfGifs" name="numberOfGifs" value="">
         <input type="hidden" id="hiddenField" name="secret" value="">
         <input type="submit" id="submit" value="summon" class="button" onClick="javascript:check()">
       </form>
+      <a href="#" class="spawn">spawn new gif</a>
       <hr />
       <p>GifParade was very hastily channeled into this dimension by <a href="http://davidpots.com">David Potsiadlo</a>. Updates/polish/shine will be coming soon, to be sure.</p>
       <p>Obvious inspiration &amp; respect go out to <a href="http://heyitsgarrett.com/">Garrett Miller</a> and his wonderful <a href="http://loudgif.com/">LoudGIF</a>.</p>
@@ -39,7 +53,7 @@
   <!-- Javascript ========================================================= -->
 
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="js/020.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
