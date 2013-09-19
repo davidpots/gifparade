@@ -44,12 +44,13 @@
         </ul>
         <ul class="gif_fields">
           <li id="gif_template" style="display:none;">
-            <input type="hidden" class="template" name="" value="">
+            <input type="hidden" class="template gifUrl" name="" value=""> plays for (seconds): <input type="hidden" class="template gifDuration" name="" value="1.2">
           </li>
         </ul>
         <a href="#" class="spawn" style="margin-left: 96px; display: block;">+ add gif</a>
         <input type="hidden" id="numberOfGifs" name="numberOfGifs" value="">
-        <input type="hidden" id="hiddenField" name="secret" value="">
+        <input type="hidden" id="hiddenUrls" name="secretUrls" value="">
+        <input type="hidden" id="hiddenDurations" name="secretDurations" value="">
         <br />
         <input type="submit" id="submit" value="create GIF parade!" class="button" onClick="javascript:check()">
       </form>

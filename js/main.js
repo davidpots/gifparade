@@ -26,6 +26,7 @@
       var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
       var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
       var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
+      var defaultGifDuration = "1.2";
       var videoStartTime = parseInt(urlVars.videoStartTime) || 0;
 
 // YouTube URL Manipulation
@@ -102,24 +103,63 @@
       }
       var paradeTitle = tidyParams(urlVars.paradeTitle);
 
-      // Setup the Gifs
-      if (urlVars.gif1 == undefined) {
-        urlVars.gif1 = defaultGif1;
+      // Setup for VANILLA visit (with no paramaters)
+      // THIS NEEDS MAJOR WORK -- so inefficient and unnecessarily long. 
+      // ------------------------------------------------------------------------
+      
+      // Check to see if LEGACY parade. If so, need to map some values.
+      if (urlVars.gif1 != undefined) { // is legacy!
+        for (var y = 0; y < parseInt(urlVars.numberOfGifs); y++) {
+          urlVars["gifUrl"+[y+1]] = urlVars["gif"+[y+1]];
+          urlVars["gifDuration"+[y+1]] = defaultGifDuration;
+        }
       }
-      if (urlVars.gif2 == undefined) {
-        urlVars.gif2 = defaultGif2;
+      if (urlVars.secret != undefined) { // is legacy!
+        for (var y = 0; y < parseInt(urlVars.numberOfGifs); y++) {
+          if (urlVars.secretUrls == undefined) {
+            urlVars.secretUrls = urlVars["gif"+[y+1]];  
+          } else {
+            urlVars.secretUrls = urlVars.secretUrls + "," + urlVars["gif"+[y+1]];
+          }
+        }
       }
-      if (urlVars.gif3 == undefined) {
-        urlVars.gif3 = defaultGif3;
+
+
+      // Commence with checking to see if vanilla/default OR if custom
+      if (urlVars.gifUrl1 == undefined) {
+        urlVars.gifUrl1 = defaultGif1;
       }
+      if (urlVars.gifUrl2 == undefined) {
+        urlVars.gifUrl2 = defaultGif2;
+      }
+      if (urlVars.gifUrl3 == undefined) {
+        urlVars.gifUrl3 = defaultGif3;
+      }
+      if (urlVars.gifDuration1 == undefined) {
+        urlVars.gifDuration1 = defaultGifDuration;
+      }
+      if (urlVars.gifDuration2 == undefined) {
+        urlVars.gifDuration2 = defaultGifDuration;
+      }
+      if (urlVars.gifDuration3 == undefined) {
+        urlVars.gifDuration3 = defaultGifDuration;
+      }
+      if (urlVars.secretUrls == undefined) {
+        urlVars.secretUrls = defaultGif1+","+defaultGif2+","+defaultGif3;
+      }
+      if (urlVars.secretDurations == undefined) {
+        urlVars.secretDurations = defaultGifDuration+","+defaultGifDuration+","+defaultGifDuration;
+      }
+
       if (urlVars.numberOfGifs == undefined) {
         urlVars.numberOfGifs = 3;
       }      
-      if (urlVars.secret == undefined) {
-        urlVars.secret = defaultGif1+","+defaultGif2+","+defaultGif3;
+
+      // Sets up the array for the duration of each gif. If not provided, it defaults to the default
+      var durations = urlVars.secretDurations.split(',');
+      for (var d = 0; d < durations.length; d++) {
+        durations[d] = parseFloat(durations[d]) * 1000 || (parseFloat(defaultGifDuration)*1000);
       }
-
-
 
 // Loop through the gifs!
       
@@ -134,16 +174,19 @@
         
       }
       // based on http://stackoverflow.com/a/6051567, minus the jQuery UI stuff
-      var gifArr = urlVars.secret.split(',');
+      var gifArr = urlVars.secretUrls.split(',');
       function imgCycle(counter) {
           var bgImg = gifArr[counter];
+          var bgDur = durations[counter];
           var bgCss = "background-image: url("+bgImg+")";
           $('#gif').attr('style',bgCss);
           delete gifArr[counter];
+          delete durations[counter];
           gifArr.push(bgImg);
+          durations.push(bgDur);
           setTimeout(function() {
               imgCycle(counter + 1);
-          }, 1242);
+          }, bgDur);
       };
 
 
@@ -151,16 +194,29 @@
 
       // via http://stackoverflow.com/a/13830609
       function check(){
-          var n = $('#newParade-form input.combine').length;
+          var n = $('#newParade-form input.combineUrl').length;
           $("#numberOfGifs").val(n);
-          $('#newParade-form input.combine').each(function(id,elem){
-              b = $("#hiddenField").val();
+
+          // Combine the GIF urls
+          $('#newParade-form input.combineUrl').each(function(id,elem){
+              b = $("#hiddenUrls").val();
               if(b.length > 0){
-                  $("#hiddenField").val( b + ',' + $(this).val() );
+                  $("#hiddenUrls").val( b + ',' + $(this).val() );
               } else {
-                  $("#hiddenField").val( $(this).val() );
+                  $("#hiddenUrls").val( $(this).val() );
               }
           });
+
+          // Combine the GIF durations
+          $('#newParade-form input.combineDuration').each(function(id,elem){
+              b = $("#hiddenDurations").val();
+              if(b.length > 0){
+                  $("#hiddenDurations").val( b + ',' + $(this).val() );
+              } else {
+                  $("#hiddenDurations").val( $(this).val() );
+              }
+          });
+
           $("#newParade-form").submit();
           return false;
       }
@@ -173,7 +229,9 @@
       function prepGif(newG,count){
         newG = $('#gif_template').clone();
         newG.removeAttr("id").addClass('gif_wrap');
-        newG.find('input').removeClass('template').addClass('combine').attr('type','text').attr('name','gif'+(count+1)).attr('id','gif'+(count+1));
+        newG.find('input').removeClass('template').attr('type','text');
+        newG.find('input.gifUrl').attr('name','gifUrl'+(count+1)).attr('id','gifUrl'+(count+1)).addClass('combineUrl');
+        newG.find('input.gifDuration').attr('name','gifDuration'+(count+1)).attr('id','gifDuration'+(count+1)).addClass('combineDuration');
         newG.prepend("<label>gif #"+(count+1)+"</label>").fadeIn();
         return newG;
       }
@@ -201,7 +259,8 @@
       var ng = parseInt(urlVars.numberOfGifs);
       for (var i = 0; i < ng; i++) {
         var c = (i+1);
-        document.getElementById('gif'+c).value = urlVars["gif"+c];
+        document.getElementById('gifUrl'+c).value = urlVars["gifUrl"+c];
+        document.getElementById('gifDuration'+c).value = urlVars["gifDuration"+c];
       }
 
 // YouTube play/pause (for audio sensibility)
