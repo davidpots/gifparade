@@ -1,16 +1,6 @@
-// Defaults
-
-      var defaultNumberGifs = 3;
-      var defaultTitle = "get on board!";
-      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=kpy4xNAnWzM";
-      var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
-      var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
-      var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
-
 // Read URL params
 
-      // v1
-      // via http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
+      // v1 via http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
       function getUrlVars() {
         // look for comment by SpaceLobster to make the orig post's code return an object instead of array
         var params = {}, d = function (s) { return s ? decodeURIComponent(s.replace(/\+/, " ")) : null; }
@@ -22,14 +12,21 @@
       }
       var urlVars = getUrlVars();
 
-      // v2
-      // written by me, quite newbish but works for prototype... need to understand the ins+outs better
+      // v2 written by me, quite newbish but works for prototype... need to understand the ins+outs better
       function tidyParams(str) {
-        // str = str.replace('%2C',',');
-        // str = str.replace('%20',' ');
         str = str.replace(/\+/g,' ');
         return str;
       }
+
+// Defaults
+
+      var defaultNumberGifs = 3;
+      var defaultTitle = "get on board!";
+      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=kpy4xNAnWzM";
+      var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
+      var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
+      var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
+      var videoStartTime = parseInt(urlVars.videoStartTime) || 0;
 
 // YouTube URL Manipulation
 
@@ -73,7 +70,8 @@
               'controls': 0,
               'modestbranding': 1,
               'showinfo': 0,
-              'loop': 1
+              'loop': 1,
+              'start': videoStartTime
           },
           events: {
             'onReady': onPlayerReady,
@@ -199,6 +197,7 @@
 
       $('input[name="paradeTitle"]').attr('value',tidyParams(urlVars.paradeTitle));
       $('input[name="paradeYoutubeUrl"]').attr('value',urlVars.paradeYoutubeUrl);
+      $('input[name="videoStartTime"]').attr('value',videoStartTime);
       var ng = parseInt(urlVars.numberOfGifs);
       for (var i = 0; i < ng; i++) {
         var c = (i+1);
