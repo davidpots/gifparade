@@ -98,8 +98,7 @@
       if (urlVars.paradeTitle == undefined) {
         urlVars.paradeTitle = defaultTitle;
       }
-      var str = tidyParams(urlVars.paradeTitle);
-      $('#chyron h1').text(str);
+      var paradeTitle = tidyParams(urlVars.paradeTitle);
 
       // Setup the Gifs
       if (urlVars.gif1 == undefined) {
@@ -125,7 +124,11 @@
       function startParade() {
         player.playVideo();
         // Lets the video start for a brief moment before the GIF cycling is called
-        setTimeout(function(){imgCycle(0)},400);
+        setTimeout(function(){
+          imgCycle(0);
+          $('#chyron h1').text(paradeTitle);
+        },400);
+        
       }
       // based on http://stackoverflow.com/a/6051567, minus the jQuery UI stuff
       var gifArr = urlVars.secret.split(',');
