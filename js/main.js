@@ -1,8 +1,8 @@
 // Defaults
 
       var defaultNumberGifs = 3;
-      var defaultTitle = "get on board!";
-      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=GugsCdLHm-Q";
+      var defaultTitle = "";
+      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=kpy4xNAnWzM";
       var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
       var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
       var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
@@ -83,8 +83,8 @@
 
       function onPlayerReady(event) {
         // This is what Garrett does... pauses the video, gets the GIF ready, which then starts the video (once GIF is loaded). http://loudgif.com/js/loud.js
-        // player.pauseVideo();
-        // loadGif();
+        player.pauseVideo();
+        startParade();
       }
 
       function onPlayerStateChange(event) {
@@ -122,9 +122,14 @@
 
 // Loop through the gifs!
       
+      function startParade() {
+        player.playVideo();
+        // Lets the video start for a brief moment before the GIF cycling is called
+        setTimeout(function(){imgCycle(0)},400);
+      }
       // based on http://stackoverflow.com/a/6051567, minus the jQuery UI stuff
       var gifArr = urlVars.secret.split(',');
-      (function imgCycle(counter) {
+      function imgCycle(counter) {
           var bgImg = gifArr[counter];
           var bgCss = "background-image: url("+bgImg+")";
           $('#gif').attr('style',bgCss);
@@ -133,7 +138,8 @@
           setTimeout(function() {
               imgCycle(counter + 1);
           }, 1242);
-      })(0);
+      };
+
 
 // String multiple form fields together
 
