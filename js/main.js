@@ -95,9 +95,12 @@
 
 // Turn Params into vars
 
-      // Setup Title
-      if (urlVars.paradeTitle == undefined) {
+      // Setup Title. Ghetto fix here, need to learn about defaults vs. empty paramater, etc
+      if (window.location.search == "") {
         urlVars.paradeTitle = defaultTitle;
+      }
+      if (urlVars.paradeTitle == undefined) {
+        urlVars.paradeTitle = "";
       }
       var paradeTitle = tidyParams(urlVars.paradeTitle);
 
