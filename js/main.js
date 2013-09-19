@@ -66,6 +66,7 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
+          origin: location.origin,
           videoId: getYouTubeCode(urlVars.paradeYoutubeUrl),
           playerVars: {
               'autoplay': 1,
