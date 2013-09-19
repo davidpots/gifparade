@@ -1,7 +1,7 @@
 // Defaults
 
       var defaultNumberGifs = 3;
-      var defaultTitle = "";
+      var defaultTitle = "get on board!";
       var defaultYoutubeUrl = "http://www.youtube.com/watch?v=kpy4xNAnWzM";
       var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
       var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
