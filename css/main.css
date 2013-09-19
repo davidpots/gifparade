@@ -31,11 +31,12 @@
 
     #wrapper        { position: absolute;
                       left: 0px;
-                      background: #444;
+                      background: #222;
                       top: 0px;
                       height: 100%;
                       width: 100%;
                       z-index: 2; }
+    #wrapper.loading { background: #222 url(../images/spinner.v1.gif) no-repeat center center; }
     #gif            { background-color: transparent;
                       background-position: center center;
                       background-repeat: no-repeat;

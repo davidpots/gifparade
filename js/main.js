@@ -127,6 +127,7 @@
         setTimeout(function(){
           imgCycle(0);
           $('#chyron h1').text(paradeTitle);
+          $('#wrapper').removeClass('loading');
         },400);
         
       }
