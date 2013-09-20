@@ -312,7 +312,7 @@
                 }
             );
 
-            if (urlVars.numberOfGifs > 8) {
+            if (urlVars.numberOfGifs > 14) {
               $('#get-short-url').hide();
             }
 
