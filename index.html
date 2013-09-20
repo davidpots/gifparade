@@ -24,7 +24,16 @@
         <img src="images/gifparade-logo.svg" width="216" />
       </div>
       <div id="controls">
-        <a href="#" id="toggle-video" class="audio-on" data-playing="true">turn audio OFF</a>
+        <p id="toggle-audio" class="audio-on" data-playing="true">
+          <a href="#">turn audio OFF</a>
+        </p>
+        <p id="get-short-url">
+          <a href="#" id="get_url">get short URL</a>
+        </p>
+        <p id="copy-short-url" style="display:none;">
+          <span id="copy_this"></span>
+          <a href="#" id="copy_url" data-clipboard-target="copy_this" class="pre-copy">COPY</a>
+        </p>
       </div>
     </div> <!-- end: #wrapper -->
 
@@ -63,6 +72,7 @@
   <!-- Javascript ========================================================= -->
 
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="zeroclipboard.js"></script>
   <script src="js/main.js"></script>
 
   <!-- GA Tracking ======================================================== -->

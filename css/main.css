@@ -73,23 +73,37 @@
       z-index: 10;
       bottom: 14px;
       right: 20px;
+      left: 0;
     }
-    #controls a {
-      display: inline-block;
+    #controls p {
+      display: block;
+      float: right;
+      margin: 0 0 0 14px;
+      padding: 0;
+    }
+    #controls p a,
+    #controls p span {
+      display: block;
+      float: left;
       font-style: italic;
       font-size: 18px;
-      line-height: 20px;
+      line-height: 48px;
       font-weight: 700;
-      padding: 16px 12px;
+      padding: 0px 15px;
     }
-    #controls a.audio-on {
-      background: rgba(0,255,255,0.48);
-      color: #000;
-    }
-    #controls a.audio-off {
-      background: rgba(255,0,255,0.48);
-      color: #fff;
-    }
+
+    #controls #copy-short-url           { background: transparent;  }
+    #controls #copy-short-url a         { color: #000; background: rgba(0,255,255,0.48); }
+    #controls #copy-short-url a.post-copy { background: rgba(255,0,255,0.48); color: #fff; }
+    #controls #copy-short-url span      { color: #000; background: rgba(255,255,255,0.48); }
+
+    #controls #get-short-url            { background: rgba(0,255,255,0.48); }
+    #controls #get-short-url a          { color: #000; }
+
+    #controls #toggle-audio.audio-on    { background: rgba(0,255,255,0.48); }
+    #controls #toggle-audio.audio-on a  { color: #000; }
+    #controls #toggle-audio.audio-off   { background: rgba(255,0,255,0.48); }
+    #controls #toggle-audio.audio-off a { color: #fff; }
 /* New GIF PARADE form */
 
     #newParade-form ul    { }
@@ -98,3 +112,17 @@
     #newParade-form ul li input { width: 300px; padding: 7px; font-size: 12px; background: #eee; border: none; border-radius: 3px; }
     #newParade-form ul li input#videoStartTime { width: 40px; }
     #newParade-form ul li input.gifDuration { width: 40px; }
+
+/* Share Box */
+
+    #share_box {
+      position: absolute;
+      width: 300px;
+      height: 100px;
+      background: #fff;
+      top: 50%;
+      left: 50%;
+      margin-left: -150px;
+      margin-top: -50px;
+      z-index: 10;
+    }

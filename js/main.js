@@ -265,21 +265,63 @@
 
 // YouTube play/pause (for audio sensibility)
 
-      $('#toggle-video').click(function(){
-        if ($(this).data('playing') === true) {
+      $('#toggle-audio a').click(function(){
+        if ($(this).parent().data('playing') === true) {
           player.pauseVideo();
           $(this)
-            .data('playing', false)
             .text('turn audio ON')
-            .removeClass('audio-on')
-            .addClass('audio-off');
+            .parent().data('playing', false)
+                     .removeClass('audio-on')
+                     .addClass('audio-off')
         } else {
           player.playVideo();
           $(this)
-            .data('playing', true)
             .text('turn audio OFF')
-            .removeClass('audio-off')
-            .addClass('audio-on');
+            .parent().data('playing', true)
+                     .removeClass('audio-off')
+                     .addClass('audio-on')
         }
         return false;
       });
+
+// Bitly API Short URL Stuff
+
+            var loudgif_url = 'http://davidpots.com/gifparade/' + location.search;
+
+            $.getJSON(
+                "https://api-ssl.bitly.com/v3/shorten?callback=?",
+                {
+                    "format": "json",
+                    "access_token": 'c59a956538c4c6468c8aafcd5cb1dae381fb5833',
+                    "longUrl": loudgif_url
+                },
+                function(response)
+                {
+                    var bitlyUrl = response.data.url;
+                    console.log(response);
+                    console.log(bitlyUrl);
+                    $('#get-short-url a').click(function(){
+                      $(this).parent().hide();
+                      $('#copy-short-url span').text(bitlyUrl);
+                      $('#copy-short-url').show();
+                      return false;
+                    });
+                    $('#copy_url').click(function(){
+                      return false;
+                    });
+                }
+            );
+
+// Copy to Clipboard plugin
+            
+            ZeroClipboard.setDefaults( {
+                moviePath: 'ZeroClipboard.swf',
+                hoverClass: 'copy-is-hover',
+                activeClass: 'copy-is-active'
+            });
+
+            var clip = new ZeroClipboard($("#copy_url"));
+
+            clip.on( 'complete', function(client, args) {
+                $('#copy_url').text('COPIED!').removeClass('pre-copy').addClass('post-copy');
+            } );
