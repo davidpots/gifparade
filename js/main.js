@@ -312,9 +312,9 @@
                 }
             );
 
-            // if (urlVars.numberOfGifs > 14) {
-            //   $('#get-short-url').hide();
-            // }
+            if (loudgif_url.length > 2000) {
+              $('#get-short-url').hide();
+            }
 
 // Copy to Clipboard plugin
             
