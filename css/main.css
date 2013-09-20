@@ -97,6 +97,8 @@
     #controls #copy-short-url a.post-copy { background: rgba(255,0,255,0.48); color: #fff; }
     #controls #copy-short-url span      { color: #000; background: rgba(255,255,255,0.48); }
 
+    #controls #too-long-url a           { background: yellow; color: #000; }
+
     #controls #get-short-url            { background: rgba(0,255,255,0.48); }
     #controls #get-short-url a          { color: #000; }
 

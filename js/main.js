@@ -314,6 +314,10 @@
 
             if (loudgif_url.length > 2000) {
               $('#get-short-url').hide();
+              $('#too-long-url').show();
+              setTimeout(function(){
+                $('#too-long-url').fadeOut();
+              }, 1000);
             }
 
 // Copy to Clipboard plugin
