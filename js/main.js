@@ -312,6 +312,10 @@
                 }
             );
 
+            if (urlVars.numberOfGifs > 8) {
+              $('#get-short-url').hide();
+            }
+
 // Copy to Clipboard plugin
             
             ZeroClipboard.setDefaults( {
