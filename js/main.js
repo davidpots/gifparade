@@ -18,6 +18,29 @@
         return str;
       }
 
+// URI Paramater Compression / Decompression
+
+            // var ls = (location.search).substring(1);
+            // var lsComp = LZString.compress(ls);
+            // var lsDecomp = LZString.decompress(lsComp);
+
+            // Is there something in the URI that could be a parameter?
+            if (location.search.length > 0) {
+              // Is the URI content in readable parameters?
+              if (urlVars.paradeTitle == undefined) {
+                // var ls = decodeURI(location.search.substring(1));
+                // var decomp = LZString.decompress(decoded);
+                // window.location.search = decomp;
+                var uls = (location.search).substring(1);
+                // var lsComp = LZString.compressToUTF16(ls);
+                var ulsDecomp = LZString.decompressFromUTF16(uls);
+                window.location.search = ulsDecomp;
+              }
+            }
+
+
+
+
 // Defaults
 
       var defaultNumberGifs = 3;
@@ -286,7 +309,12 @@
 
 // Bitly API Short URL Stuff
 
-            var loudgif_url = 'http://davidpots.com/gifparade/' + location.search;
+            var ls = (location.search).substring(1);
+            var lsComp = LZString.compressToUTF16(ls);
+            // var lsDecomp = LZString.decompressFromUTF16(lsComp);
+
+            // var loudgif_url = 'http://davidpots.com/gifparade/?' + lsComp;
+            var loudgif_url = 'http://localhost:8000/?' + lsComp;
 
             $.getJSON(
                 "https://api-ssl.bitly.com/v3/shorten?callback=?",
@@ -298,8 +326,6 @@
                 function(response)
                 {
                     var bitlyUrl = response.data.url;
-                    console.log(response);
-                    console.log(bitlyUrl);
                     $('#get-short-url a').click(function(){
                       $(this).parent().hide();
                       $('#copy-short-url span').text(bitlyUrl);
