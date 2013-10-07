@@ -333,3 +333,9 @@
             clip.on( 'complete', function(client, args) {
                 $('#copy_url').text('COPIED!').removeClass('pre-copy').addClass('post-copy');
             } );
+
+// If they click on "create" link, jump them down to the form + hide the button
+
+$('#create a').click(function(){
+  $(this).fadeOut(1500);
+});

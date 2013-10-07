@@ -46,7 +46,7 @@
                       width: 100%;
                       z-index: 1; }
     #chyron         { position: absolute;
-                      bottom: 50%; left: 0px; right: 0px; 
+                      bottom: 40%; left: 0px; right: 0px; 
                       z-index: 3; }
     #chyron h1      { text-align: center;
                       padding: 32px;
@@ -64,7 +64,7 @@
     #title          { position: absolute; 
                       z-index: 10;
                       left: 20px;
-                      bottom: 14px;
+                      top: 14px;
                     }
     #title em       { font-style: italic; font-size: 32px; font-weight: 700; text-transform: uppercase; display: inline-block; background: yellow; color: black; padding: 16px 12px; }
     #title strong   { font-style: italic; font-size: 32px; font-weight: 200; text-transform: uppercase; display: inline-block; background: black; color: white; padding: 16px 12px; }
@@ -81,6 +81,7 @@
       margin: 0 0 0 14px;
       padding: 0;
     }
+
     #controls p a,
     #controls p span {
       display: block;
@@ -106,6 +107,10 @@
     #controls #toggle-audio.audio-on a  { color: #000; }
     #controls #toggle-audio.audio-off   { background: rgba(255,0,255,0.48); }
     #controls #toggle-audio.audio-off a { color: #fff; }
+
+    #controls p#create { float: left; }
+    #controls p#create a { background: yellow; color: black; }
+
 /* New GIF PARADE form */
 
     #newParade-form ul    { }
