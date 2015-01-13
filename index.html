@@ -24,13 +24,16 @@
         <img src="images/gifparade-logo.svg" width="216" />
       </div>
       <div id="controls">
+        <p id="create">
+          <a href="#belowfold">+ create your own GIF parade</a>
+        </p>
         <p id="toggle-audio" class="audio-on" data-playing="true">
           <a href="#">turn audio OFF</a>
         </p>
         <p id="get-short-url">
           <a href="#" id="get_url">get short URL</a>
         </p>
-        <p id="too-long-url">
+        <p id="too-long-url" style="display:none;">
           <a>too many GIFs for short URL!</a>
         </p>
         <p id="copy-short-url" style="display:none;">
@@ -41,6 +44,8 @@
     </div> <!-- end: #wrapper -->
 
     <div id="belowfold">
+      <h1 style="color: yellow; font-size: 32px; line-height: 40px; margin: 0 0 12px 0;">make your own!</h1>
+      <p style="padding-bottom: 12px; border-bottom: 1px solid #444;margin: 0 0 18px 0;">Simply provide the URL for the online .gif files you want to use, as well as the URL for a single YouTube track. You can even specify exactly how long each .gif should play for. Warning! After ~10 gifs, the bitly shortener may run into problems (due to URL length)... which means sharing may be a bit tough, but it is still doable.</p>
       <form action="" method="get" id="newParade-form" name="newParade" class="">
         <ul>
           <li>
