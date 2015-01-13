@@ -22,7 +22,7 @@
 
       var defaultNumberGifs = 3;
       var defaultTitle = "get on board!";
-      var defaultYoutubeUrl = "http://www.youtube.com/watch?v=kpy4xNAnWzM";
+      var defaultYoutubeUrl = "https://www.youtube.com/watch?v=GugsCdLHm-Q";
       var defaultGif1 = "http://media.giphy.com/media/DIx84JJyyCqFW/giphy.gif";
       var defaultGif2 = "http://media1.giphy.com/media/oOAuubU8LEI0w/giphy.gif";
       var defaultGif3 = "http://media1.giphy.com/media/d1vaWA1lsbIdy/200.gif";
